@@ -9,33 +9,28 @@ import MapKit
 import SwiftUI
 import Vortex
 
-struct ContentView: View {    
-    let startPosition = MapCameraPosition.region(
-        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 55.78874, longitude: 49.12214), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)))
-
+struct ContentView: View {
+    @State var locationManager: LocationManager = LocationManager()
     @State var temperature: String = ""
     @State var viewModel: ViewModel = ViewModel()
-    
+        
     var body: some View {
         ZStack {
             MapReader { proxy in
-                Map(initialPosition: startPosition) {
+                Map(initialPosition: MapCameraPosition.region(
+                    MKCoordinateRegion(center: locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 55.78874, longitude: 49.12214), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)))) {
                     ForEach(viewModel.locations) { location in
                         Annotation(location.name, coordinate: location.coordinate) {
                             ZStack {
-                                Image(systemName: "circle")
+                                Image(systemName: "location.circle")
                                     .resizable()
                                     .symbolVariant(.fill)
-                                    .symbolRenderingMode(.palette)
-                                    .foregroundStyle(
-                                        Color.gray.opacity(0.9)
-                                    )
-                                    .frame(width: 60, height: 60)
+                                    .symbolRenderingMode(.multicolor)
+                                    .frame(width: 50, height: 50)
                                     .onLongPressGesture {
                                         viewModel.selectedPlace = location
                                     }
-                                Text("\(temperature)°C")
-                                .font(.system(size: 30))                            }
+                            }
                         }
                     }
                 }
@@ -50,14 +45,34 @@ struct ContentView: View {
                         viewModel.update(from: newLocation)
                     }
                 }
+                
             }
-            VortexView(.rain) {
-                Circle()
-                    .fill(.white)
-                    .frame(width: 32)
-                    .tag("circle")
+            switch viewModel.precipitation {
+            case .rain:
+                VortexView(.rain) {
+                    Circle()
+                        .fill(.white)
+                        .frame(width: 32)
+                        .tag("circle")
+                }
+                .allowsHitTesting(false)
+            case .snow:
+                VortexView(.snow) {
+                    Circle()
+                        .fill(.white)
+                        .blur(radius: 5)
+                        .frame(width: 32)
+                        .tag("circle")
+                }
+                .allowsHitTesting(false)
+            case .none:
+                Group {}
             }
-            .allowsHitTesting(false)
+        }
+        .task {
+            try? await locationManager.requestUserAuthorization()
+            try? await locationManager.startCurrentLocationUpdates()
+            // remember that nothing will run here until the for try await loop finishes
         }
     }
 }

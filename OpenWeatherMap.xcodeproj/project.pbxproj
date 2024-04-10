@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA3C805D2BC224DD009DF1C1 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C805C2BC224DD009DF1C1 /* ContentView-ViewModel.swift */; };
+		BA3C805F2BC35966009DF1C1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C805E2BC35966009DF1C1 /* LocationManager.swift */; };
 		BA59589F2BBECBB200F729DF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA59589E2BBECBB200F729DF /* Location.swift */; };
 		BA7D6D012BBB0DAF0037C3FA /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D6D002BBB0DAF0037C3FA /* Weather.swift */; };
 		BAC27FD32BC076C200FEBC89 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC27FD22BC076C200FEBC89 /* EditView.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		BA3C805C2BC224DD009DF1C1 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		BA3C805E2BC35966009DF1C1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		BA59589E2BBECBB200F729DF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BA7D6D002BBB0DAF0037C3FA /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		BAC27FD22BC076C200FEBC89 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				BAC657AE2BB5BE4E00CED0AA /* Preview Content */,
 				BA7D6D002BBB0DAF0037C3FA /* Weather.swift */,
 				BA59589E2BBECBB200F729DF /* Location.swift */,
+				BA3C805E2BC35966009DF1C1 /* LocationManager.swift */,
 				BA3C805C2BC224DD009DF1C1 /* ContentView-ViewModel.swift */,
 				BAC27FD22BC076C200FEBC89 /* EditView.swift */,
 			);
@@ -280,6 +283,7 @@
 				BA59589F2BBECBB200F729DF /* Location.swift in Sources */,
 				BA3C805D2BC224DD009DF1C1 /* ContentView-ViewModel.swift in Sources */,
 				BAC27FD32BC076C200FEBC89 /* EditView.swift in Sources */,
+				BA3C805F2BC35966009DF1C1 /* LocationManager.swift in Sources */,
 				BA7D6D012BBB0DAF0037C3FA /* Weather.swift in Sources */,
 				BAC657AB2BB5BE4A00CED0AA /* ContentView.swift in Sources */,
 				BAC657A92BB5BE4A00CED0AA /* OpenWeatherMapApp.swift in Sources */,
@@ -450,8 +454,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We want to help you find your location";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We want to help you find your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to help you find your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -483,8 +486,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We want to help you find your location";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We want to help you find your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to help you find your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

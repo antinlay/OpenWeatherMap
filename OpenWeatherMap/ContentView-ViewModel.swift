@@ -14,6 +14,7 @@ extension ContentView {
     class ViewModel {
         private(set) var locations: [Location]
         var selectedPlace: Location?
+        var precipitation: Precipitation = .none
         
         let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
         
@@ -36,18 +37,30 @@ extension ContentView {
         }
         
         func apendNewLocation(at point: CLLocationCoordinate2D) {
-            let newLocation = Location(id: UUID(), name: "New location", temp: "", latitude: point.latitude, longtitude: point.longitude)
+            let newLocation = Location(id: UUID(), name: "New location", latitude: point.latitude, longtitude: point.longitude, temperature: "", apparentTemperature: "", humidity: "", cloudCover: "", precipitation: "", pressure: "", windSpeed: "", windDirection: "")
             locations.append(newLocation)
             save()
         }
         
         func update(from newLocation: Location) {
             guard let selectedPlace else { return }
+            
+            if selectedPlace.rain > 0 || selectedPlace.showers > 0 {
+                precipitation = .rain
+            } else if selectedPlace.snowfall > 0 {
+                precipitation = .snow
+            } else {
+                precipitation = .none
+            }
+            
             if let index = locations.firstIndex(of: selectedPlace) {
                 locations[index] = newLocation
                 save()
             }
         }
         
+        enum Precipitation {
+            case rain, snow, none
+        }
     }
 }
